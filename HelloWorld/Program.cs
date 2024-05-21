@@ -6,16 +6,50 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
+            int x, y, a, b;
 
-            Console.WriteLine("Shakil's Big Giveaway");
-            Console.Write("Choose a door: 1, 2 or 3: ");
-            string userValue = Console.ReadLine();
+            x = 3;
+            y = 2;
+            a = 1;
+            b = 0;
 
-            string message = (userValue == "1") ? "boat" : "strand of lint";
+            x = 3 + 4;
+
+            x = 4 - 3;
+
+            x = 4 * 3;
+
+            x = 10 / 5;
+
+            x = (x + y) * (a - b);
+
+            if (x == y)
+            {
+
+            }
+
+            if(x > y)
+            {
+
+            }
+
+            if (x <= y) 
+            {
             
-            Console.WriteLine("You entered: {0}, therefore you won a {1}.", userValue, message);
+            }
 
-            Console.ReadLine();
+            if((x >y) && (a > b))
+            {
+
+            }
+
+            if((x > y) || (a > b))
+            {
+
+            }
+
+            string message = (x == 1) ? "car" : "boat";
+
 
         }
     }
