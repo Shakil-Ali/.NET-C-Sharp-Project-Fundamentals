@@ -9,13 +9,25 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            DateTime myValue = DateTime.Now;
-            Console.WriteLine(myValue.ToString());
+            Car myCar = new Car();
+            myCar.Make = "BMW";
+            myCar.Model = "M3";
+            myCar.Year = 2024;
+            myCar.Colour = "Black";
 
+            Console.WriteLine("{0} {1} {2} {3}", myCar.Make, myCar.Model, myCar.Year, myCar.Colour);
             Console.ReadLine();
-
         }
 
+        class Car
+        {
+            public string Make { get; set; }
+            public string Model { get; set; }
+            public int Year { get; set; }
+
+            public String Colour { get; set; }
+
+        }
 
     }
 }
