@@ -10,18 +10,35 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-
-            ArrayList myArrayList = new ArrayList();
-            myArrayList.Add("1");
-            myArrayList.Add("2");
-            myArrayList.Add("3");
-
-            foreach(int i in myArrayList)
+            List<Car> myCars = new List<Car>()
             {
-                Console.WriteLine(i);
+                new Car() {Make = "BMW", Model = "M3", Colour = "Black"},
+                new Car() {Make = "Lamborghini", Model = "Urus", Colour = "Yellow"}
+            };
+
+            // LINQ Query
+            var bmws = from car in myCars
+                       where car.Model == "BMW"
+                       select car;
+
+            // LINQ Method
+            foreach (var car in bmws) 
+            {
+                Console.WriteLine("{0} {1}", car.Model, car.Colour);
             }
 
+            Console.ReadLine();
+
         }
+    }
+
+    class Car
+    {
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public string Colour { get; set; }
 
     }
+
+    
 }
