@@ -3,6 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Data.Common;
 using System.Security.AccessControl;
+using System.Collections.Generic;
 
 namespace HelloWorld
 {
@@ -10,35 +11,69 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            List<Car> myCars = new List<Car>()
-            {
-                new Car() {Make = "BMW", Model = "M3", Colour = "Black"},
-                new Car() {Make = "Lamborghini", Model = "Urus", Colour = "Yellow"}
-            };
+            List<Todo> todos = new List<Todo>()
+           {
+               new Todo { Description = "Task 1", EstimatedHours = 6, Status = Status.Completed},
+               new Todo { Description = "Task 2", EstimatedHours = 2, Status = Status.InProgress},
+               new Todo { Description = "Task 3", EstimatedHours = 8, Status = Status.NotStarted},
+               new Todo { Description = "Task 4", EstimatedHours = 12, Status = Status.Deleted},
+               new Todo { Description = "Task 1", EstimatedHours = 4, Status = Status.OnHold},
+           };
 
-            // LINQ Query
-            var bmws = from car in myCars
-                       where car.Model == "BMW"
-                       select car;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
 
-            // LINQ Method
-            foreach (var car in bmws) 
-            {
-                Console.WriteLine("{0} {1}", car.Model, car.Colour);
-            }
-
+            PrintAssessment(todos);
             Console.ReadLine();
 
         }
+
+        private static void PrintAssessment(List<Todo> todos)
+        {
+            foreach (var todo in todos)
+            {
+                switch (todo.Status)
+                {
+                    case Status.NotStarted:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        break;
+                    case Status.InProgress:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    case Status.OnHold:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        break;
+                    case Status.Completed:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        break;
+                    case Status.Deleted:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        break;
+                    default:
+                        break;
+                }
+                Console.WriteLine(todo.Description);
+
+            }
+        }
+
+
     }
 
-    class Car
+    class Todo
     {
-        public string Make { get; set; }
-        public string Model { get; set; }
-        public string Colour { get; set; }
-
+        public string Description { get; set; }
+        public int EstimatedHours { get; set; }
+        public Status Status { get; set; }
     }
 
-    
+    enum Status
+    {
+        NotStarted,
+        InProgress,
+        OnHold,
+        Completed,
+        Deleted
+    }
+
+
 }
